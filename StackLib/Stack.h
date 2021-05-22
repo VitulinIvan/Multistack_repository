@@ -15,6 +15,7 @@ protected:
     int length;
     T* stack;
     int front;
+    bool f;
 public:
     TStack(int size = 0);
     TStack(const TStack<T>& s);
@@ -26,6 +27,8 @@ public:
     bool IsEmpty();
     bool IsFull();
     int Length();
+    int Count();
+    void SetData(T* _x, int size, int front);
     T GetMaxElement(); // Доп. задание 1
     T GetMinElement(); // Доп. задание 3
     void WriteToFile(string filename); // Доп. Задание 2
@@ -129,6 +132,24 @@ inline int TStack<T>::Length()
 {
     return this->length;
 }
+
+template<class T>
+inline int TStack<T>::Count()
+{
+    return front + 1;
+}
+
+template<class T>
+inline void TStack<T>::SetData(T* _x, int size, int front)
+{
+    if (f)
+        delete[] stack;
+    this->length = size;
+    f = false;
+    this->stack = _x;
+    this->front = front;
+}
+
 
 template <class T1>
 ostream& operator<<(ostream& ostr, const TStack<T1>& S)
